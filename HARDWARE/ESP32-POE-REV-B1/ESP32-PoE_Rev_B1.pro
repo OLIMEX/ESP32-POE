@@ -1,4 +1,4 @@
-update=Thu 06 Sep 2018 05:10:54 PM EEST
+update=" 6.09.2018 (чт)  8:58:18 EEST"
 version=1
 last_client=kicad
 [cvpcb]
@@ -6,6 +6,9 @@ version=1
 NetIExt=net
 [general]
 version=1
+[eeschema]
+version=1
+LibDir=
 [pcbnew]
 version=1
 PageLayoutDescrFile=
@@ -70,6 +73,3 @@ Type=2
 [pcbnew/Layer.B.Cu]
 Name=B.Cu
 Type=2
-[eeschema]
-version=1
-LibDir=

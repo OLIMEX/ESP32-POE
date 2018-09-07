@@ -248,6 +248,8 @@
     (via_drill 0.4)
     (uvia_dia 0.45)
     (uvia_drill 0.3)
+    (diff_pair_width 0.2032)
+    (diff_pair_gap 0.25)
     (add_net +3.3VLAN)
     (add_net +3V3)
     (add_net +5V)
