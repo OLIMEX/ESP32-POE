@@ -1,0 +1,11 @@
+ESP32-PoE
+
+Hardware revisions
+
+Hardware revision B1 - initial release
+
+Hardware revision B2 notable changes:
+=========
+1. R34 changed from 49.9R/1%/R0402 to NA(49.9R/1%/R0402). This changes PoE's Class 3 to Class 0(Default)
+2. EN_CT1 and EN_CT2 changed from position open to closed (soldered).
+3. One 2.2uF/100V/20%/X7R/C01206(C12) is manually soldered in parallel to C27(15uF/100V/20%/RM2.5/6.3x11mm(Farnell:1281844))
