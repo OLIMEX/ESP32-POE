@@ -1,6 +1,10 @@
 ESP32-PoE
 
-This hardware design is made with KiCAD.
+This hardware design is made with KiCAD. If you have problem opening the design, try getting newer KiCAD version (probably even latest nightly build).
+
+Hardware revision C1 notable changes:
+
+1. Added 3D view
 
 ---
 
