@@ -1,0 +1,40 @@
+ESP32-PoE
+
+This hardware design is made with KiCAD. If you have problem opening the design, try getting newer KiCAD version (probably even latest nightly build).
+
+Hardware revision C1 notable changes:
+
+1. Added 3D view
+
+---
+
+Hardware revision C notable changes:
+
+1. Moved buttons RST1 and BUT1 0.5mm towards the ESP-WROOM-32 module.
+2. USB-UART1's shield was disconnected from Vneg, now it is floating. Added L3 ferrite bead, NA(FB0805/600R/2A), between USB-UART1's shield and GND, in case there is a need to connect the shield to the GND.
+3. U3 was changed from MCP73833(MSOP10) to BL4054B-42TPRN(SOT23-5). This required additional changes:
+- R22(2.2k/R0402) was renamed to R5(2.2k/R0402). So, R22 is now removed;
+- R16(1k/R0402) was removed;
+- R17(10k/R0402) was removed;
+- THERM1 pad was removed;
+- The LED COMPL1(LED/GREEN/0603) was removed;
+4. Added C12 -> 2.2uF/100V/20%/X7R/C1206(AVX_12061C225KAT2A_Comet) in parallel to C27 -
+15uF/100V/20%/RM2.5/6.3x11mm(Farnell:1281844).
+5. MICRO_SD1's housing was disconnected from Vneg and connected to GND.
+6. Added resistor divider - R4(47k/R0402)/R9(100k/R0402) between +5V and GND to GPI39 for External Power Sense purposes.
+7. R34 changed from 49.9R/1%/R0402 to NA(49.9R/1%/R0402) -> Default Class 0 (0.44 to 12.95 W) instead of Class 3 (6.49 to 12.95 W)!!!
+8. EN_CT1 and EN_CT2 changed from Open to Closed package by default!
+
+---
+
+Hardware revision B2 notable changes:
+
+1. R34 changed from 49.9R/1%/R0402 to NA(49.9R/1%/R0402). This changes PoE's Class 3 to Class 0(Default)
+2. EN_CT1 and EN_CT2 changed from position open to closed (soldered).
+3. One 2.2uF/100V/20%/X7R/C01206(C12) is manually soldered in parallel to C27(15uF/100V/20%/RM2.5/6.3x11mm(Farnell:1281844))
+
+---
+
+Hardware revision B1 - initial release
+
+---

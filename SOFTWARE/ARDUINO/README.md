@@ -1,0 +1,1 @@
+Make sure that you have properly installed the support for ESP32 chips in your Arduino IDE environment. Check the Arduino for ESP32 GitHub page for installation instructions: https://github.com/espressif/arduino-esp32
