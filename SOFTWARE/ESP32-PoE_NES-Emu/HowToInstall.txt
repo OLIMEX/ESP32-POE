@@ -1,0 +1,35 @@
+In order to compile and upload the project you need esp-idf installed. Follow the instructions here: https://docs.espressif.com/projects/esp-idf/en/latest/get-started/ for details.
+
+If you are using Windows you need to install MSYS2 as well.
+
+Change the directory within terminal to the folder of the game. Should be something like this C:\esp\msys32\home\ESP32_PoE_NES_Emu
+ - cd "C:\esp\msys32\home\ESP32_PoE_NES_Emu"
+
+If you want to change to port where your ESP32-PoE(-ISO) has connected go to menuconfig
+ - make menuconfig
+
+Then navigate to "Serial flasher config"-->"Default serial port"-->write the port on which YOUR BOARD has connected.
+If you wish you can change from here also the pins of the SPI or I2C for the display and the controller. Just need to navigate to: "Nofrendo ESP32-specific configuration"
+
+Leave the menuconfig by selecting "exit" option and SAVE the changes (if needed).
+
+Compile and upload the program to the board.
+ - make flash
+Wait until compiling and uploading is finished. First time after each change within menuconfig takes very long time so wait a little bit.
+
+Without anything else the screen will be blank (black) and nothing else will happened. In order to have a game running you need to upload your own rom (they are not provided with the project). In order to do so open the file "flashrom.sh" (it is located within the root directory of the project) as text file and after the "--port" option within the quotes write the port your board has connected.
+
+Go back to the terminal and run this file with parameter the name of your rom file
+ - ./flashrom "my_own_rom.nes"
+
+If you have done all this the game should be running. With touch screen used as a controller there are different sections on the screen that acts as buttons.
+Top left corner     - Start
+Top right corner    - Select
+Bottom left corner  - Button A
+Bottom right corner - Button B
+Top middle          - Up
+Bottom middle       - Down
+Left middle         - Left
+Right middle        - Right
+
+A combo of two buttons is also supported although it is not very precise since the touch screen doesn't support double touch and instead makes some approximations to the middle of the two locations. Thus it may cause unexpected actions due to some close sections. Inexisting combos are Up+Down; Left+Right; ButA+ButB; Start/Select with anything.
