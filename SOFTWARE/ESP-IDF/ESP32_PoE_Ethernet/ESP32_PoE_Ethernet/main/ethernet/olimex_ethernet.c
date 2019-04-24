@@ -116,7 +116,7 @@ uint8_t initEthernet()
 	config.tcpip_input = tcpip_adapter_eth_input;
 	config.phy_power_enable = phy_device_power_enable_via_gpio;
 
-	/* Chanege clock mode */
+	/* Change clock mode */
 	config.clock_mode = ETH_CLOCK_GPIO17_OUT;
 
 	/* Initialize ethernet */
