@@ -10,6 +10,9 @@ If you want to change to port where your ESP32-PoE(-ISO) has connected go to men
 
 Then navigate to "Serial flasher config"-->"Default serial port"-->write the port on which YOUR BOARD has connected.
 If you wish you can change from here also the pins of the SPI or I2C for the display and the controller. Just need to navigate to: "Nofrendo ESP32-specific configuration"
+Also from here you are able to select the controller. You choose either Touch screen and/or the MOD-Wii-UEXT-Nunchuck.
+
+NOTE!!! Using both controllers at the same time is possible but this will occasionally cause spikes on the picture.
 
 Leave the menuconfig by selecting "exit" option and SAVE the changes (if needed).
 
@@ -22,7 +25,9 @@ Without anything else the screen will be blank (black) and nothing else will hap
 Go back to the terminal and run this file with parameter the name of your rom file
  - ./flashrom "my_own_rom.nes"
 
-If you have done all this the game should be running. With touch screen used as a controller there are different sections on the screen that acts as buttons.
+If you have done all this the game should be running.
+
+If you have selected touch screen as a controller there are different sections on the screen that acts as buttons.
 Top left corner     - Start
 Top right corner    - Select
 Bottom left corner  - Button A
@@ -33,3 +38,14 @@ Left middle         - Left
 Right middle        - Right
 
 A combo of two buttons is also supported although it is not very precise since the touch screen doesn't support double touch and instead makes some approximations to the middle of the two locations. Thus it may cause unexpected actions due to some close sections. Inexisting combos are Up+Down; Left+Right; ButA+ButB; Start/Select with anything.
+
+Another option for controller is the MOD-Wii-UEXT-Nunchuck.
+The Joystick axis are used for the 4 directions.
+Button 'C' on the Nunchuck (the circle one) triggers Button 'A' of the NES emulator.
+Button 'Z' on the Nunchuck (the square one) triggers Button 'B' of the NES emulator.
+Accelerometer data of the Nunchuck is not used.
+On board button is used to trigger Start/Select buttons of the NES emulator. Press it quickly for Select or longer for Start.
+
+
+
+2019/03/14

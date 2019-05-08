@@ -139,37 +139,6 @@ config SOUND_ENA
 		ESP32 will output 0-3.3V analog audio signal on GPIO26.
 
 
-config HW_PSX_ENA
-	bool "Enable PSX controller input"
-	default y
-	help
-		If you connect a PSX/PS2 controller to the following GPIOs, you can control the NES.
-
-
-config HW_PSX_CLK
-	int "PSX controller CLK GPIO pin"
-	depends on HW_PSX_ENA
-	range 1 35
-	default 14
-
-config HW_PSX_DAT
-	int "PSX controller DATa GPIO pin"
-	depends on HW_PSX_ENA
-	range 1 35
-	default 27
-
-config HW_PSX_ATT
-	int "PSX controller ATTention GPIO pin"
-	depends on HW_PSX_ENA
-	range 1 35
-	default 16
-
-config HW_PSX_CMD
-	int "PSX controller CoMmanD GPIO pin"
-	depends on HW_PSX_ENA
-	range 1 35
-	default 2
-
 
 config HW_TS_ENA
 	bool "Enable I2C Touch Screen controller input"
@@ -178,15 +147,60 @@ config HW_TS_ENA
 		If you connect a I2C of Touch Screen to following GPIOs, you can control the NES.
 
 
+config TS_PLAYER
+	int "Select which player Touch Screen controls (1 or 2)"
+	depends on HW_TS_ENA
+	range 1 2
+	default 1
+
+config HW_TS_I2C_NUM
+	int "Touch Screen I2C Number"
+	depends on HW_TS_ENA
+	range 1 2
+	default 1
+
 config HW_TS_CLK
-	int "I2C Touch Screen CLK GPIO pin"
+	int "Touch Screen I2C CLK GPIO pin"
 	depends on HW_TS_ENA
 	range 1 35
 	default 16
 
 config HW_TS_DAT
-	int "I2C Touch Screen DATA GPIO pin"
+	int "Touch Screen I2C DATA GPIO pin"
 	depends on HW_TS_ENA
+	range 1 35
+	default 13
+
+
+
+config HW_NUNCHUCK_ENA
+	bool "Enable I2C MOD-Wii-UEXT-Nunchuck controller input"
+	default y
+	help
+		If you connect a I2C pins on UEXT of the NUNCHUCK to following GPIOs, you can control the NES.
+
+
+config NUNCHUCK_PLAYER
+	int "Select which player MOD-Wii-UEXT-Nunchuck controls (1 or 2)"
+	depends on HW_NUNCHUCK_ENA
+	range 1 2
+	default 1
+
+config HW_NUNCHUCK_I2C_NUM
+	int "MOD-Wii-UEXT-Nunchuck I2C Number"
+	depends on HW_NUNCHUCK_ENA
+	range 1 2
+	default 1
+
+config HW_NUNCHUCK_CLK
+	int "MOD-Wii-UEXT-Nunchuck I2C CLK GPIO pin"
+	depends on HW_NUNCHUCK_ENA
+	range 1 35
+	default 16
+
+config HW_NUNCHUCK_DAT
+	int "MOD-Wii-UEXT-Nunchuck I2C DATA GPIO pin"
+	depends on HW_NUNCHUCK_ENA
 	range 1 35
 	default 13
 

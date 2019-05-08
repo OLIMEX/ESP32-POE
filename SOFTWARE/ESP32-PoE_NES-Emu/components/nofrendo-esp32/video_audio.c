@@ -39,8 +39,8 @@
 #include "sdkconfig.h"
 #include <spi_lcd.h>
 
-#include <psxcontroller.h>
-#include <ts_controller.h>
+#include <Olimex_TS_Controller.h>
+#include <Olimex_Nunchuck_Controller.h>
 
 #define  DEFAULT_SAMPLERATE   22100
 #define  DEFAULT_FRAGSIZE     128
@@ -269,35 +269,40 @@ static void osd_initinput()
 	TS_Init ();
 #endif
 
-#if CONFIG_HW_PSX_ENA
-	psxcontrollerInit();
+#ifdef	CONFIG_HW_NUNCHUCK_ENA
+	Nunchuck_Init ();
 #endif
 }
 
 void osd_getinput(void)
 {
 	const int ev[16]={
-			event_joypad1_select,0,0,event_joypad1_start,event_joypad1_up,event_joypad1_right,event_joypad1_down,event_joypad1_left,
-			0,0,0,0,event_soft_reset,event_joypad1_a,event_joypad1_b,event_hard_reset
+			event_joypad1_start, event_joypad1_select, event_joypad1_a   , event_joypad1_b,
+			event_joypad1_up   , event_joypad1_down  , event_joypad1_left, event_joypad1_right,
+			event_joypad2_start, event_joypad2_select, event_joypad2_a   , event_joypad2_b,
+			event_joypad2_up   , event_joypad2_down  , event_joypad2_left, event_joypad2_right,
 		};
 	static int oldb=0xffff;
-#if defined	CONFIG_HW_TS_ENA
-	int b=TS_Read_Input();
-
-#elif defined CONFIG_HW_PSX_ENA
-	int b=psxReadInput();
-#else
 	int b=0xffff;
+#ifdef	CONFIG_HW_TS_ENA
+	b &= TS_Read_Input();
+#endif
+
+#ifdef	CONFIG_HW_NUNCHUCK_ENA
+	b &= Nunchuck_Read_Input();
 #endif
 	int chg=b^oldb;
 	int x;
 	oldb=b;
 	event_t evh;
 //	printf("Input: %x\n", b);
-	for (x=0; x<16; x++) {
-		if (chg&1) {
+	for (x=0; x<16; x++)
+	{
+		if (chg&1)
+		{
 			evh=event_get(ev[x]);
-			if (evh) evh((b&1)?INP_STATE_BREAK:INP_STATE_MAKE);
+			if (evh)
+				evh((b&1)?INP_STATE_BREAK:INP_STATE_MAKE);
 		}
 		chg>>=1;
 		b>>=1;
