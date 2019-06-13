@@ -1,0 +1,130 @@
+PC side using iperf-1.7.0-win32
+
+PoE (Client)
+iperf -c 192.168.0.51 -i 1
+
+mode=tcp-client sip=192.168.0.209:5001, dip=192.168.0.51:5001, interval=1, time=30
+esp32>
+        Interval Bandwidth
+   0-   1 sec       32.24 Mbits/sec
+   1-   2 sec       33.69 Mbits/sec
+   2-   3 sec       35.39 Mbits/sec
+   3-   4 sec       35.52 Mbits/sec
+   4-   5 sec       35.78 Mbits/sec
+   5-   6 sec       35.65 Mbits/sec
+   6-   7 sec       35.91 Mbits/sec
+   7-   8 sec       35.91 Mbits/sec
+   8-   9 sec       35.78 Mbits/sec
+   9-  10 sec       35.65 Mbits/sec
+  10-  11 sec       35.78 Mbits/sec
+  11-  12 sec       35.91 Mbits/sec
+  12-  13 sec       35.91 Mbits/sec
+  13-  14 sec       35.39 Mbits/sec
+  14-  15 sec       33.69 Mbits/sec
+  15-  16 sec       35.91 Mbits/sec
+  16-  17 sec       35.39 Mbits/sec
+  17-  18 sec       35.26 Mbits/sec
+  18-  19 sec       35.26 Mbits/sec
+  19-  20 sec       34.60 Mbits/sec
+  20-  21 sec       34.87 Mbits/sec
+  21-  22 sec       33.55 Mbits/sec
+  22-  23 sec       33.29 Mbits/sec
+  23-  24 sec       34.21 Mbits/sec
+  24-  25 sec       35.65 Mbits/sec
+  25-  26 sec       35.65 Mbits/sec
+  26-  27 sec       35.65 Mbits/sec
+  27-  28 sec       35.52 Mbits/sec
+  28-  29 sec       35.78 Mbits/sec
+  29-  30 sec       35.78 Mbits/sec
+   0-  30 sec       35.15 Mbits/sec
+I (358777) iperf: iperf exit
+
+PC (Server)
+iperf -s -i 1
+
+[276] local 192.168.0.51 port 5001 connected with 192.168.0.209 port 64351
+[ ID] Interval       Transfer     Bandwidth
+[276]  0.0- 1.0 sec  3.86 MBytes  32.4 Mbits/sec
+[276]  1.0- 2.0 sec  4.02 MBytes  33.7 Mbits/sec
+[276]  2.0- 3.0 sec  4.22 MBytes  35.4 Mbits/sec
+[276]  3.0- 4.0 sec  4.23 MBytes  35.5 Mbits/sec
+[276]  4.0- 5.0 sec  4.27 MBytes  35.8 Mbits/sec
+[276]  5.0- 6.0 sec  4.25 MBytes  35.6 Mbits/sec
+[276]  6.0- 7.0 sec  4.29 MBytes  36.0 Mbits/sec
+[276]  7.0- 8.0 sec  4.28 MBytes  35.9 Mbits/sec
+[276]  8.0- 9.0 sec  4.26 MBytes  35.7 Mbits/sec
+[276]  9.0-10.0 sec  4.25 MBytes  35.7 Mbits/sec
+[276] 10.0-11.0 sec  4.26 MBytes  35.7 Mbits/sec
+[276] 11.0-12.0 sec  4.27 MBytes  35.8 Mbits/sec
+[276] 12.0-13.0 sec  4.29 MBytes  36.0 Mbits/sec
+[276] 13.0-14.0 sec  4.22 MBytes  35.4 Mbits/sec
+[276] 14.0-15.0 sec  4.02 MBytes  33.7 Mbits/sec
+[276] 15.0-16.0 sec  4.26 MBytes  35.8 Mbits/sec
+[276] 16.0-17.0 sec  4.23 MBytes  35.5 Mbits/sec
+[276] 17.0-18.0 sec  4.20 MBytes  35.3 Mbits/sec
+[276] 18.0-19.0 sec  4.21 MBytes  35.3 Mbits/sec
+[276] 19.0-20.0 sec  4.14 MBytes  34.7 Mbits/sec
+[ ID] Interval       Transfer     Bandwidth
+[276] 20.0-21.0 sec  4.15 MBytes  34.9 Mbits/sec
+[276] 21.0-22.0 sec  4.00 MBytes  33.5 Mbits/sec
+[276] 22.0-23.0 sec  3.96 MBytes  33.3 Mbits/sec
+[276] 23.0-24.0 sec  4.08 MBytes  34.2 Mbits/sec
+[276] 24.0-25.0 sec  4.25 MBytes  35.7 Mbits/sec
+[276] 25.0-26.0 sec  4.25 MBytes  35.6 Mbits/sec
+[276] 26.0-27.0 sec  4.24 MBytes  35.6 Mbits/sec
+[276] 27.0-28.0 sec  4.25 MBytes  35.6 Mbits/sec
+[276] 28.0-29.0 sec  4.26 MBytes  35.8 Mbits/sec
+[276]  0.0-30.0 sec   126 MBytes  35.2 Mbits/sec
+
+
+
+
+
+
+
+
+
+
+
+PoE (Server) max 10 seconds time (otherwise Watchdog resets)
+iperf -s -i 1 -t 10
+
+mode=tcp-server sip=192.168.0.209:5001, dip=0.0.0.0:5001, interval=1, time=10
+esp32> accept: 192.168.0.51,50542
+
+        Interval Bandwidth
+   0-   1 sec       21.57 Mbits/sec
+   1-   2 sec       22.88 Mbits/sec
+   2-   3 sec       25.79 Mbits/sec
+   3-   4 sec       26.80 Mbits/sec
+   4-   5 sec       26.84 Mbits/sec
+   5-   6 sec       26.56 Mbits/sec
+   6-   7 sec       26.43 Mbits/sec
+   7-   8 sec       26.76 Mbits/sec
+   8-   9 sec       26.07 Mbits/sec
+   9-  10 sec       26.39 Mbits/sec
+   0-  10 sec       25.61 Mbits/sec
+I (812797) iperf: iperf exit
+
+
+
+
+PC (Client)
+iperf -c 192.168.0.209 -i 1 -t 10
+
+Client connecting to 192.168.0.209, TCP port 5001
+TCP window size: 8.00 KByte (default)
+------------------------------------------------------------
+[168] local 192.168.0.51 port 50542 connected with 192.168.0.209 port 5001
+[ ID] Interval       Transfer     Bandwidth
+[168]  0.0- 1.0 sec  2.57 MBytes  21.6 Mbits/sec
+[168]  1.0- 2.0 sec  2.72 MBytes  22.8 Mbits/sec
+[168]  2.0- 3.0 sec  3.07 MBytes  25.8 Mbits/sec
+[168]  3.0- 4.0 sec  3.20 MBytes  26.8 Mbits/sec
+[168]  4.0- 5.0 sec  3.20 MBytes  26.9 Mbits/sec
+[168]  5.0- 6.0 sec  3.16 MBytes  26.5 Mbits/sec
+[168]  6.0- 7.0 sec  3.15 MBytes  26.4 Mbits/sec
+[168]  7.0- 8.0 sec  3.20 MBytes  26.8 Mbits/sec
+[168]  8.0- 9.0 sec  3.11 MBytes  26.1 Mbits/sec
+[168]  9.0-10.0 sec  3.15 MBytes  26.4 Mbits/sec
+[168]  0.0-10.0 sec  30.5 MBytes  25.6 Mbits/sec
