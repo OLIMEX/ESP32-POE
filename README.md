@@ -7,3 +7,4 @@ Product page: https://www.olimex.com/Products/IoT/ESP32/ESP32-POE/open-source-ha
 ## License
 * Hardware is released under Apache 2.0 License
 * Software is released under GPL3 License
+* Documentation is released under CC BY-SA 3.0
