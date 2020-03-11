@@ -1,29 +1,69 @@
-This is a simple demo for Olimex ESP32-PoE revision B (or later) board.
-The project is based on the ethernet example located in "examples/ethernet/basic" of ESP-IDF release v4.0: https://github.com/espressif/esp-idf/tree/release/v4.0
-Pin numbers (RST removed and RMII clock to 17) in menuconfig are modified to match those of ESP32-PoE.
+# Ethernet Example
+(See the README.md file in the upper level 'examples' directory for more information about examples.)
 
-The demo sets up Ethernet connection and acquires IP address.
+## Overview
 
-1) Setup the ESP-IDF development framework. You can download and install it by following the instructions here  https://github.com/espressif/esp-idf
-If you use the Windows installer: https://dl.espressif.com/dl/esp-idf-tools-setup-2.1.exe when you choose version of the ESP-IDF select v4.0
+This example demonstrates basic usage of `Ethernet driver` together with `tcpip_adapter`. The work flow of the example could be as follows:
 
-2) Open terminal (or command prompt) and navigate to the project
+1. Install Ethernet driver
+2. Send DHCP requests and wait for a DHCP lease
+3. If get IP address successfully, then you will be able to ping the device
 
-3) If you want to change any settings open menuconfig and save the changes.
+If you have a new Ethernet application to go (for example, connect to IoT cloud via Ethernet), try this as a basic template, then add your own code.
 
-4) Connect ESP32-PoE to the USB. 
+## How to use example
 
-5) Compile this example and upload it to the board
+### Hardware Required
 
-6) Wait until firmware is flashed and open terminal on the ESP32-PoE port.
+To run this example, it's recommended that you have an official ESP32 Ethernet development board - [ESP32-Ethernet-Kit](https://docs.espressif.com/projects/esp-idf/en/latest/hw-reference/get-started-ethernet-kit.html). This example should also work for 3rd party ESP32 board as long as it's integrated with a supported Ethernet PHY chip. Up until now, ESP-IDF supports up to four Ethernet PHY: `LAN8720`, `IP101`, `DP83848` and `RTL8201`, additional PHY drivers should be implemented by users themselves.
 
-7) Wait until it is initialized. Your network needs DHCP.
+Besides that, `esp_eth` component can drive third-party Ethernet module which integrates MAC and PHY and provides common communication interface (e.g. SPI, USB, etc). This example will take the **DM9051** as an example, illustrating how to install the Ethernet driver in the same manner.
 
-8) When you get IP address you can ping the printed IP.
+#### Pin Assignment
 
+See common pin assignments for Ethernet examples from [upper level](../README.md#common-pin-assignments).
 
-IMPORTANT: The example won't work with older (and very likely newer) versions of the ESP-IDF due to the changed structure of the libraries in the ESP-IDF.
-If you want to ESP-IDF v3.xx you should use the project: ESP32_PoE_Ethernet_IDFv3.x
+### Configure the project
 
-YYYY/MM/DD
-2019/12/10
+```
+idf.py menuconfig
+```
+
+See common configurations for Ethernet examples from [upper level](../README.md#common-configurations).
+
+### Build, Flash, and Run
+
+Build the project and flash it to the board, then run monitor tool to view serial output:
+
+```
+idf.py -p PORT build flash monitor
+```
+
+(Replace PORT with the name of the serial port to use.)
+
+(To exit the serial monitor, type ``Ctrl-]``.)
+
+See the [Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/index.html) for full steps to configure and use ESP-IDF to build projects.
+
+## Example Output
+
+```bash
+I (394) eth_example: Ethernet Started
+I (3934) eth_example: Ethernet Link Up
+I (3934) eth_example: Ethernet HW Addr 30:ae:a4:c6:87:5b
+I (5864) tcpip_adapter: eth ip: 192.168.2.151, mask: 255.255.255.0, gw: 192.168.2.2
+I (5864) eth_example: Ethernet Got IP Address
+I (5864) eth_example: ~~~~~~~~~~~
+I (5864) eth_example: ETHIP:192.168.2.151
+I (5874) eth_example: ETHMASK:255.255.255.0
+I (5874) eth_example: ETHGW:192.168.2.2
+I (5884) eth_example: ~~~~~~~~~~~
+```
+
+Now you can ping your ESP32 in the terminal by entering `ping 192.168.2.151` (it depends on the actual IP address you get).
+
+## Troubleshooting
+
+See common troubleshooting for Ethernet examples from [upper level](../README.md#common-troubleshooting).
+
+(For any technical queries, please open an [issue](https://github.com/espressif/esp-idf/issues) on GitHub. We will get back to you as soon as possible.)
