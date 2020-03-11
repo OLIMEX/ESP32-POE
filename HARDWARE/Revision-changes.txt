@@ -1,6 +1,34 @@
 ESP32-PoE
 
-This hardware design is made with KiCAD. If you have problem opening the design, try getting newer KiCAD version (probably even latest nightly build).
+This hardware design is made with KiCAD. If you have problems opening the design, try getting newer KiCAD version (probably even latest nightly build).
+
+
+---
+
+Hardware revision D
+
+Overview:
+
+- introduced major low-power mode improvements - deep sleep mode now consumes under 100uA;
+- added battery measurement option
+
+Notable changes:
+
+1. R29 changed from 4.99k/1%/R0402 to 220k/R0402;
+2. R30 changed from 1.1k/1%/R0402 to 49.9k/1%/R0402;
+3. L2 changed from 2.2uH/1.5A/DCR<0.1R/CD32 to 2.2uH/1.5A/DCR=72mR/20%/3.00x3.00x1.50mm/CD32(NR3015T2R2M);
+4. R32 changed from 1k/R0402 to 470k/R0402;
+5. U1(CH340T(SSOP20W))'s pin<20>, NOS#, disconnected from GND and left open;
+6. D6 and D7 (1N5819S4(SOD-123)) added;
+7. R18 and R19 changed from 220R/R0402 to 10k/R0402;
+8. R16(NA(10k/R0402)) added just in case;
+9. C26 changed from 1nF/50V/10%/X7R/C0603 to 1nF/50V/10%/X7R/C0402;
+10. To enable battery measurement, added: C19(1nF/50V/10%/X7R/C0402), R17, and R22 - both resistors (470k/R0402);
+11. R7(0R(board_mounted)) shorted and deleted;
+12. BAT_SENS_E1 jumper added (to enable battery sense);
+13. 3D models improved.
+
+---
 
 Hardware revision C1 notable changes:
 
