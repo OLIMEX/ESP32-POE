@@ -3,6 +3,22 @@ ESP32-PoE
 This hardware design is made with KiCAD. If you have problems opening the design, try getting newer KiCAD version (probably even latest nightly build).
 
 
+Hardware revision E
+
+Overview:
+
+- improved behavior after reset 
+
+Notable changes:
+
+1. Added C20(1uF/10V/20%/X5R/C0603) to the ESP_EN signal;
+2. R32 changed from 470k/R0402 to 10k/R0402;
+3. C27 decreased length of the pads (the footprint was changed locally) to avoid short circuits during manual soldering;
+4. D2 rotated and moved away from C29;
+5. C22 changed from 22uF/6.3V/20%/X5R/C0603 to 47uF/6.3V/20%/X5R/C0805;
+6. T1 changed from DTC114YKA(SOT-23) to LMUN2211LT1G(SOT-23);
+7. UEXT1 changed from B-V-10-LF(GBH254SMT-10) to P-B-V-10-LF;
+
 ---
 
 Hardware revision D
@@ -10,7 +26,7 @@ Hardware revision D
 Overview:
 
 - introduced major low-power mode improvements - deep sleep mode now consumes under 100uA;
-- added battery measurement option
+- added battery measurement option;
 
 Notable changes:
 
