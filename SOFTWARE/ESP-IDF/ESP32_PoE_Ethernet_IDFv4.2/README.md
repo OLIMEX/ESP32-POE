@@ -52,7 +52,7 @@ In the Example Configuration menu:
 
 Choose the kind of Ethernet under Ethernet Type.
 If Internal EMAC is selected:
-Choose PHY device under Ethernet PHY Device, by default, ESP32-PoE(-ISO) has an LAN8720 on board.
+Choose PHY device under Ethernet PHY Device, by default, ESP32-PoE(-ISO) has an LAN8710A on board but it works fine with LAN8720 selected from the menuconfig.
 Set GPIO number used by SMI signal under SMI MDC GPIO number and SMI MDIO GPIO number respectively.
 If DM9051 Module is selected:
 Set SPI specific configuration, including SPI host number, GPIO number and clock rate.
@@ -62,7 +62,7 @@ For this project values are as follows:
 |   Value  |         Option        |
 | -------- | -------------------   |
 | Internal |     Ethernet Type     |
-| LAN8720  |  Ethernet PGY Device  |
+| LAN8720  |  Ethernet PHY Device  |
 |  GPIO23  |      SMI MDC GPIO     |
 |  GPIO18  |     SMI MDIO GPIO     |
 |    -1    | PHY Reset GPIO number |
