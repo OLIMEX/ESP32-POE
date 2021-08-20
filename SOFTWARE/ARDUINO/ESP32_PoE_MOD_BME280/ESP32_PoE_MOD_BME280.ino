@@ -16,7 +16,7 @@ void setup()
 {
   Serial.begin(115200); // initialize serial communications
   Wire.begin (13, 16);  // init I2C on the respective pins
-  bme.begin(0x76);
+  bme.begin(0x77);
 }
 
 char Buff[100];
