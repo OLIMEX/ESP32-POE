@@ -16,7 +16,9 @@ If you have a new Ethernet application to go (for example, connect to IoT cloud 
 
 To run this example, it's recommended that you have one of the Olimex boards [ESP32-PoE](https://www.olimex.com/Products/IoT/ESP32/ESP32-POE/) or [ESP32-PoE-ISO](https://www.olimex.com/Products/IoT/ESP32/ESP32-POE-ISO/). This example should also work for 3rd party ESP32 board as long as it's integrated with a supported Ethernet PHY chip. Up until now, ESP-IDF supports up to four Ethernet PHY: `LAN8720`, `IP101`, `DP83848` and `RTL8201`, additional PHY drivers should be implemented by users themselves.
 
-Besides that, `esp_eth` component can drive third-party Ethernet module which integrates MAC and PHY and provides common communication interface (e.g. SPI, USB, etc).This example will take the **DM9051** as an example, illustrating how to install the Ethernet driver in the same manner. In this project by default this feature is disabled. If you want to enable it:
+Notice that Olimex board uses LAN8710 chip but the libraries for LAN8710 and LAN8720 are similar (the chips are very similar).
+
+Besides that, `esp_eth` component can drive third-party Ethernet module which integrates MAC and PHY and provides common communication interface (e.g. SPI, USB, etc).This example will take the **LAN8720** library for the an example, illustrating how to install the Ethernet driver in the same manner. In this project by default this feature is disabled. If you want to enable it:
 ```
 idf.py menuconfig
 ```
