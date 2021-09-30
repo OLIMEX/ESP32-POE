@@ -22,7 +22,7 @@ Besides that, `esp_eth` component can drive third-party Ethernet module which in
 ```
 idf.py menuconfig
 ```
-then option and navigate to "Component config -> Ethernet" and check the "Support SPI to Ethernet Module" and then in that submenu check "Use DM9051".
+then option and navigate to "Component config -> Ethernet" and check the "Support SPI to Ethernet Module" and then in that submenu check "Use LAN8720".
 
 #### Pin Assignment
 
