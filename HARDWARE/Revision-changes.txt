@@ -2,6 +2,91 @@ ESP32-PoE
 
 This hardware design is made with KiCAD. If you have problems opening the design, try getting newer KiCAD version (probably even latest nightly build).
 
+Hardware revision G1
+
+Overview:
+
+- released, improved behavior during low power modes 
+
+Notable changes:
+
+1. Added resistors R41 and R42(both 3.9k/R1206). Visible in the schematics.
+
+---
+
+Hardware revision G
+
+Overview:
+
+- unreleased, major chages to PoE circuit
+
+Notable changes:
+
+1. The Si3402-B-GM(QFN-20_5x5mm) changed with TPS2375PW(TSSOP-8) + TX4138(ESOIC-8)! Because of this, many related changes:
+
+Deleted: U8, C12, C25, C26, R33, R34, R38, C29, L6, R41, R42, R43, R45, C30, EN_CT1 and EN_CT2
+
+In the schematic added the following elements:
+
+SMAJ58A/SMA as D8
+TX4138(ESOIC-8) as U5
+TPS2375PW(TSSOP-8) as U2
+30.1k/1%/R0402 as R38
+5.23k/1%/R0402 as R34
+4.7R/R0402 as R33
+0.03R/1%/R1206 as R28
+4.42k/1%/1/16W/R0402 as R27
+180k/1%/R0402 as R23
+24.9k/1%/R0402 as R7
+470uF/10V/20%/Low_ESR/RM2.5/6.0x11mm as C25
+12pF/50V/5%/COG/C0402 as C23
+100nF/100V/20%/X7R/C1206 as C12
+
+2. Added D9(1N5819S4(SOD-123)) to protect ESP_EN from 4.2V levels during the process of programming the board;
+3. No PTH pad at MTDI(pin 14);
+4. 7 i 8 krak na LAN_CON1 ste si ostanat vyrzani kym GND kakto si bqha - tova okon4atelno resi Gogo;
+5. Korpusite na PTH elektrolitnite kondenzatori stanaha ot SMD na PTH;
+6. C12 i C24 - 100nF/100V se promeniha v korpus ot 1206 na 0603;
+7. ESP-WROOM-32 se updaitna
+8. pone s 20mils se izliza ot padovete
+9. Sloji se CE.
+10. C20 otide na bot strana.
+11. Kvoto moje se barna.
+12. L3 stana FB0805/600R/2A
+13. mrudnaha se kolkoto e vyzmojno nqkolko pisti, kolkoto mqsto tolkova mnogo e sbutano.
+14. Smeni se simvola na t1 s pravilniq.
+15. Razchisti se kolkoto e po vyzmonostite mi i vremeto za tova.
+
+
+---
+
+Hardware revision F
+
+Overview:
+
+- unreleased, general improvements
+
+Notable changes:
+
+1. Added ESDS314DBVR(SOT-23-5) v sch i pcbnew. Slojen e v B.Cu;
+2. Dobaveni sa 2 x NA(GG0402052R542P) v sch i pcbnew. Dobaveni sa v B.Cu;
+3. C22 e premeseten mejdu L4 i GND padovete na U4;
+4. R29 e premesten do C8;
+5. R30 e zavartqn an 90 gradуsa i e slohen pod C6;
+6. U7 e zavartqn na 90 gradуs;
+7. R26 e premesten ot B.Cu v F.Cu. za da se sloji TVS1. Namesten e pod L2;
+8. C6 e zavartqn na 90 gradusa;
+9. C11 premesten ot B.Cu v F.Cu i e slojen mejdu L2 i GND pads na U4;
+10. R10, R11, R12, R13 sa premesteni ot B.Cu v F.Cu i sa slojeni pod GND pads na U4 za da se namestqt TVS3 i TVS2;
+11. L2, U7, C6, R30 bqha premesteni s nqkolko mils na lqvo;
+12. C6 be premesten po blizo do U1 za da ima mqsto za TVS1;
+13. C13 e namesten pod C6 i U1 za da se namesti TVS1;
+14. C7 e izmesteno v lqvo s nqkolko mils za da se osvobodi mqsto za defirencialnite dvoiki TD+ i TD-;
+15. C16 e doblijen do U1;
+16. Net - (L3 - Pad1) be premahnat (Po preporaka ot Nikito) ot ednata strana na USB - UART1 za da moje da se osvobodi mqsto za routvane.
+
+
+---
 
 Hardware revision E
 
