@@ -2,6 +2,33 @@ ESP32-PoE
 
 This hardware design is made with KiCAD. If you have problems opening the design, try getting newer KiCAD version (probably even latest nightly build).
 
+Hardware revision I
+
+---
+
+Overview:
+
+- Changed PCB from 2-layer to 4-layer. Inner layer helps cooling down the DCDC.
+
+Notable changes:
+
+1. Added C26 and R43.
+
+---
+
+Hardware revision H1
+
+Overview:
+
+- fixed problems related to boards losing Ethernet connectivity when you draw any current off the board
+
+Notable changes:
+
+1. R33 changed from 4.7 Ohms to 15 Ohms 
+2. Added RC patch betweem the coil and GND. R=22 Ohm and C=220p/110V
+
+---
+
 Hardware revision G1
 
 Overview:
@@ -57,7 +84,6 @@ TPS2375PW(TSSOP-8) as U2
 14. Smeni se simvola na t1 s pravilniq.
 15. Razchisti se kolkoto e po vyzmonostite mi i vremeto za tova.
 
-
 ---
 
 Hardware revision F
@@ -84,7 +110,6 @@ Notable changes:
 14. C7 e izmesteno v lqvo s nqkolko mils za da se osvobodi mqsto za defirencialnite dvoiki TD+ i TD-;
 15. C16 e doblijen do U1;
 16. Net - (L3 - Pad1) be premahnat (Po preporaka ot Nikito) ot ednata strana na USB - UART1 za da moje da se osvobodi mqsto za routvane.
-
 
 ---
 
