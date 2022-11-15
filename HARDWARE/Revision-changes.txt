@@ -2,6 +2,38 @@ ESP32-PoE
 
 This hardware design is made with KiCAD. If you have problems opening the design, try getting newer KiCAD version (probably even latest nightly build).
 
+Hardware revision K
+
+---
+
+Overview: minor design improvements
+
+Notable changes:
+
+1. Added voltage divider R50(130k/R0402) / R51(10k/R0402) to set the undervoltage lockout (UVLO) when TPS2376PW is used;
+2. U2 changed from TPS2375PW(TSSOP-8) to TPS2376PW(TSSOP-8).
+
+
+---
+
+Hardware revision J (internal, not released)
+
+Overview: Major layout changes - bigger size, added mount holes, a lot of other components (buttons, SD card, etc) moved
+
+Notable changes:
+
+1. The board PCB extended with 5mm from 28x75mm to 28x80mm;
+2. Added U8(SN74LVC1G04DBVR(SOT23-5)) and C28(100nF/16V/10%/X7R/C0402), for WROVER-module compatibility. When WROVER is populated, for GPIO17 is then NC and Ethernet's clock will be supplied by GPIO0;
+3. Added R45(10R/R0402) to connect, when populated, I2C-SCL to GPIO33, for WROVER-module compatibility. When WROVER is populated, GPIO16 is also NC;
+4. Added three mounting holes, 2.2mm drills;
+5. BAT1 changed from DW02R to DW02S and rotated;
+6. Both buttons, SD card and many other components moved too;
+7. Added numbering of the layers: 1-F.Cu, 2-In1.Cu, 3-In2.Cu, 4-B.Cu.
+
+
+---
+
+
 Hardware revision I
 
 ---
