@@ -2,6 +2,18 @@ ESP32-PoE
 
 This hardware design is made with KiCAD. If you have problems opening the design, try getting newer KiCAD version (probably even latest nightly build).
 
+
+Hardware revision L
+
+---
+
+Overview: minor design improvements
+
+Notable changes:
+
+U2 changed from TPS2376PW(TSSOP-8) to TPS2376D(SO-8), because of this, U2's package changed from TSSOP-8 to SOIC-8_1.75mm;
+Elements were moved, at the bottom, to free place for the SOIC-8 package.
+
 Hardware revision K
 
 ---
@@ -12,7 +24,6 @@ Notable changes:
 
 1. Added voltage divider R50(130k/R0402) / R51(10k/R0402) to set the undervoltage lockout (UVLO) when TPS2376PW is used;
 2. U2 changed from TPS2375PW(TSSOP-8) to TPS2376PW(TSSOP-8).
-
 
 ---
 
