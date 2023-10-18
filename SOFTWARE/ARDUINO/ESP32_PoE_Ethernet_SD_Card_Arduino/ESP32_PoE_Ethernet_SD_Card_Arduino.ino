@@ -1,10 +1,7 @@
 /*
     This sketch is combined demo of: 1) SD(esp_32) -- > SD_Test; 2) WiFi --> ETH_LAN8720
     It displays info about the card on the terminal and initializes LAN after that. You can ping the IP address shown on the terminal.
-
 */
-#define ETH_CLK_MODE ETH_CLOCK_GPIO17_OUT
-#define ETH_PHY_POWER 12
 
 #include <ETH.h>
 
@@ -172,15 +169,15 @@ void testFileIO(fs::FS &fs, const char * path){
 void WiFiEvent(WiFiEvent_t event)
 {
   switch (event) {
-    case SYSTEM_EVENT_ETH_START:
+    case ARDUINO_EVENT_ETH_START:
       Serial.println("ETH Started");
       //set eth hostname here
       ETH.setHostname("esp32-ethernet");
       break;
-    case SYSTEM_EVENT_ETH_CONNECTED:
+    case ARDUINO_EVENT_ETH_CONNECTED:
       Serial.println("ETH Connected");
       break;
-    case SYSTEM_EVENT_ETH_GOT_IP:
+    case ARDUINO_EVENT_ETH_GOT_IP:
       Serial.print("ETH MAC: ");
       Serial.print(ETH.macAddress());
       Serial.print(", IPv4: ");
@@ -193,11 +190,11 @@ void WiFiEvent(WiFiEvent_t event)
       Serial.println("Mbps");
       eth_connected = true;
       break;
-    case SYSTEM_EVENT_ETH_DISCONNECTED:
+    case ARDUINO_EVENT_ETH_DISCONNECTED:
       Serial.println("ETH Disconnected");
       eth_connected = false;
       break;
-    case SYSTEM_EVENT_ETH_STOP:
+    case ARDUINO_EVENT_ETH_STOP:
       Serial.println("ETH Stopped");
       eth_connected = false;
       break;
