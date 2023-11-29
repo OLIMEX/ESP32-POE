@@ -1,0 +1,35 @@
+MQTT examples between Olimex ESP32-POE and Olimex ESP32-POE-ISO and public broker mqttx 
+
+Each folder contains example with own ino file suitable for Arduino IDE. The four examples are:
+
+ESP32-PoE_MQTT_GPIO - scans for the button state with commands via the MQTT app; uses WIFI for connecting to the internet;
+
+ESP32-PoE_MQTT_GPIO_ETH - scans for the button state with commands via the MQTT app; uses Ethernet for connecting to the internet;
+
+ESP32-PoE_MQTT_I2C - uses MOD-RTC module that is connected to the UEXT and I2C, allows to print data from MOD-RTC via the MQTT app using commands (time and date); uses WIFI for connecting;
+
+ESP32-PoE_MQTT_I2C_ETH - uses MOD-RTC module that is connected to the UEXT and I2C, allows to print data from MOD-RTC via the MQTT app using commands (time and date); uses Ethernet for the Internet connection.
+
+- Setting the ESP32-PoE with the code:
+
+1. Pick one of the three Arduino examples. "ESP32-PoE_MQTT_GPIO" is easier to use since it requires no extra hardware. Demo  allows to scan the button state.
+2. Edit the WIFI settings inside the example with the one of your WIFI network. Refer to the comments in the code. 
+3. Make sure to install the library Sketch --> Include Library --> Manage Libraries... --> search for PubSubClient by Nick O'Leary
+4. Build the example and download it to the ESP32-POE or ESP32-POE-ISO via Arduino IDE (remember to install the ESP32 for Arduino package, selected ESP32-POE or ESP32-POE-ISO from the board selector).
+
+- Setting the MQTT application:
+
+1. Download the app from: https://mqttx.app/ and install it
+2. Start the application
+3. Create a "New Connection"
+4. Enter a name and Client ID (they can be whatever)
+5. Leave Host and Port with their default values: (mqtt://broker.emqx.io:1883)
+6. Connect
+7. Create a "New Subscription"
+  7.1. At the Topic field you must enter the same topic that is defined in the Arduino sketch (for example: emqx/ESP32-POE_GPIO). This is the topic you will listen to.
+  7.2  At the bottom of the screen (just above the text box with the message) you type the same topic. This is the topic you will send to.
+8. Click connect and you are ready to send and receive data.
+
+Note: If you need, you can have multiple topics, from which you receive messages within the same connection.
+
+Check the comments in the code for better understanding.
