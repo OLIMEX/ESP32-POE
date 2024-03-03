@@ -91,8 +91,6 @@ void setup()
   delay(500);
 
   // This sketch will log some information to the serial console:
-
-
   Serial.begin(115200); // Assuming computer will be connected to serial port at 115200 bauds
   Serial.print("Setup...");
   

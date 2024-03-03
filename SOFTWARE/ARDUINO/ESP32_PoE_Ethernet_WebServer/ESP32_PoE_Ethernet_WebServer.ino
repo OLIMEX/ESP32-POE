@@ -23,19 +23,19 @@
 static bool eth_connected = false;
 WebServer server(80);
 
-const int led = 13;
+const int led_pin = 13;
 
 // Web Server: handle a request to / (root of the server)
 void handleRoot() {
-  digitalWrite(led, 1);
+  digitalWrite(led_pin, 1);
   server.send(200, "text/plain", "hello from esp32!");
-  delay(100);    // Wait x ms so we have time to see the LEd blinking
-  digitalWrite(led, 0);
+  delay(100);    // Wait x ms so we have time to see the Led blinking
+  digitalWrite(led_pin, 0);
 }
 
 // Web Server: handle a request to an unknown URI (unknown "File")
 void handleNotFound() {
-  digitalWrite(led, 1);
+  digitalWrite(led_pin, 1);
   String message = "File Not Found\n\n";
   message += "URI: ";
   message += server.uri();
@@ -48,7 +48,7 @@ void handleNotFound() {
     message += " " + server.argName(i) + ": " + server.arg(i) + "\n";
   }
   server.send(404, "text/plain", message);
-  // digitalWrite(led, 0);  // If this is commented out, the LED will stay on in case of 404 error
+  // digitalWrite(led_pin, 0);  // If this is commented out, the LED will stay on in case of 404 error
 }
 
 // Handle Ethernet Events:
@@ -167,7 +167,7 @@ void setup()
   server.begin();
   Serial.println("HTTP server started");
 
-  pinMode( led, OUTPUT);  // Initialize the LED pin as a digital output (on/off)
+  pinMode( led_pin, OUTPUT);  // Initialize the LED pin as a digital output (on/off)
 }
 
 void loop ()

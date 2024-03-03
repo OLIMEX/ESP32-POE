@@ -223,6 +223,8 @@ void testClient(const char * host, uint16_t port)
   client.stop();
 }
 
+// Print SDCard Info, perform son read/write operations and test file I/O
+// (This is called when the button is pressed)
 void Print_SDCard_Info ()
 {
     uint8_t cardType = SD_MMC.cardType();
@@ -251,41 +253,58 @@ void Print_SDCard_Info ()
     listDir(SD_MMC, "/", 0);
     removeDir(SD_MMC, "/mydir");
     listDir(SD_MMC, "/", 2);
+
     writeFile(SD_MMC, "/hello.txt", "Hello ");
     appendFile(SD_MMC, "/hello.txt", "World!\n");
     readFile(SD_MMC, "/hello.txt");
+    
     deleteFile(SD_MMC, "/foo.txt");
     renameFile(SD_MMC, "/hello.txt", "/foo.txt");
     readFile(SD_MMC, "/foo.txt");
+    
     testFileIO(SD_MMC, "/test.txt");
+    
     Serial.printf("Total space: %lluMB\n", SD_MMC.totalBytes() / (1024 * 1024));
     Serial.printf("Used space: %lluMB\n", SD_MMC.usedBytes() / (1024 * 1024));
 
 }
+
+// Pressing the button will pull down the input (it has a 10k pullup resistor)
 #define BUTTON_PRESSED()  (!digitalRead (34))
+
 void setup()
 {
-    Serial.begin(115200);
-    if(!SD_MMC.begin()){
-        Serial.println("Card Mount Failed");
-        return;
-    }
+  // Wait for the hardware to initialize:
+  delay(500);
 
-    WiFi.onEvent(WiFiEvent);
-    ETH.begin();
-    pinMode (34, INPUT);  // Button
+  Serial.begin(115200);
+  
+  if(!SD_MMC.begin()){
+      Serial.println("Card Mount Failed");
+      Serial.println("Note: is it formated as FAT32? (exFAT and other formats at NOT supported)");
+      return;
+  }
+  Serial.println("Card Mounted");
+
+  WiFi.onEvent(WiFiEvent);
+  ETH.begin();
+  pinMode (34, INPUT);  // Button
 }
 
 
 void loop()
 {
+  // Note: you may have to press the button for 2 seconds before it is detected (because of the delay at the end of this loop)
   if (BUTTON_PRESSED())
   {
     Print_SDCard_Info ();
+    // Wait for the user to release the button
     while (BUTTON_PRESSED());
   }
+
   if (eth_connected) {
     testClient("google.com", 80);
   }
+  
   delay(2000);
 }
