@@ -125,6 +125,8 @@ void setup()
 
   server.begin();
   Serial.println("HTTP server started");
+
+  pinMode( led, OUTPUT);  // Initialize the LED pin as a digital output (on/off)  
 }
 
 void loop ()
