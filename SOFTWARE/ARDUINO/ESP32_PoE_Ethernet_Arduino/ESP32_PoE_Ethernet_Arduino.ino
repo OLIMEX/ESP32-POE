@@ -84,9 +84,15 @@ void testClient(const char * host, uint16_t port)
   client.stop();
 }
 
+// Initializing everything at start up / after reset:
 void setup()
 {
-  // This sketch will log Ethernet events to the serial console:
+  // Wait for the hardware to initialize:
+  delay(500);
+
+  // This sketch will log some information to the serial console:
+
+
   Serial.begin(115200); // Assuming computer will be connected to serial port at 115200 bauds
   Serial.print("Setup...");
   
