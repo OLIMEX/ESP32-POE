@@ -23,6 +23,8 @@
 static bool eth_connected = false;
 WebServer server(80);
 
+// ESP32-POE doesn't have an onboard LED so if you want to use a LED you have to attach one to the extended pins on either UEXT or one of the 10 pin extentions.
+// in this example the default value is 13 which is UEXT pin 6, or Extention 2 pin 1. If you want to attach the LED to another pin you need to change this value accordingly.
 const int led_pin = 13;
 
 // Web Server: handle a request to / (root of the server)

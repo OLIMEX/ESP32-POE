@@ -278,8 +278,10 @@ void setup()
   delay(500);
 
   Serial.begin(115200);
-  
-  if(!SD_MMC.begin()){
+
+  //if(!SD_MMC.begin()) // if using ESP32 package 2.0.x
+  if(!SD_MMC.begin("/sdcard", true))  // if using ESP32 package 3.x.x
+  {
       Serial.println("Card Mount Failed");
       Serial.println("Note: is it formated as FAT32? (exFAT and other formats at NOT supported)");
       return;
