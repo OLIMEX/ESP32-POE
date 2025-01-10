@@ -4,6 +4,7 @@
 */
 
 #include <ETH.h>
+#include <WiFi.h>
 
 static bool eth_connected = false;
 
