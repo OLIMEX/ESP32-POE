@@ -2,6 +2,17 @@ ESP32-PoE
 
 This hardware design is made with KiCAD. If you have problems opening the design, try getting newer KiCAD version (probably even latest nightly build).
 
+Hardware revision M
+---
+
+1. Moved design to KiCad 7.x;
+2. PWR switch (U9) chased with TPS2378DDAR(HSOIC-8);
+3. R7 was getting too hot, so we lowered the value and added r42 in parallel with 9.1k values;
+4. Chanaged USB to UART chip to CH340X;
+5. Changed battery charger to TP4054-42-SOT25-R(SOT23-5);
+6. A lot of general routing and component improvements that doesn't affect functionality but increase yield.
+
+
 Hardware revision L1
 
 ---
@@ -10,8 +21,7 @@ Overview: minor design improvements
 
 Notable changes:
 
-1. Lower the battery charge current to 100mA (down from 455mA). Changed R6 from 2.2k to 10k.
-
+1. Lower the battery charge current to 100mA (down from 455mA). Changed R6 from 2.2k to 10k;
 2. U2 changed from TPS2376D(SO-8) to TPS2375D and related resistors no longer placed (R50 and R51). This is because of small differnces between TPS237D and TPS2375D.
 
 ---
