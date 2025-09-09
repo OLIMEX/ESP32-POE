@@ -2,16 +2,20 @@ ESP32-PoE
 
 This hardware design is made with KiCAD. If you have problems opening the design, try getting newer KiCAD version (probably even latest nightly build).
 
+Hardware revision M1
+---
+
+1. Reverted back the PoE class from class 4 to class 0 due to complaints. Class 4 devices reserve double the power and the minimum consumption is much higher, it makes sense for a device like ESP32-POE2 but not much sense to ESP32-POE or ESP32-POE-ISO. Switching to class 4 was a problem for customers that used one PD for many ESP32-POE devices and now the switch runs out of wattage for same amount of devices.
+
 Hardware revision M
 ---
 
 1. Moved design to KiCad 7.x;
 2. PWR switch (U9) chased with TPS2378DDAR(HSOIC-8);
-3. R7 was getting too hot, so we lowered the value and added r42 in parallel with 9.1k values;
-4. Chanaged USB to UART chip to CH340X;
-5. Changed battery charger to TP4054-42-SOT25-R(SOT23-5);
-6. A lot of general routing and component improvements that doesn't affect functionality but increase yield.
-
+3. Changed PoE class from class 0 (0.44W to 12.95W) to class 4 (12.95W to 12.95W);
+4. R7 was getting too hot, so we lowered the value and added r42 in parallel with 9.1k values;
+5. Chanaged USB to UART chip to CH340X;
+6. Changed battery charger to TP4054-42-SOT25-R(SOT23-5);
 
 Hardware revision L1
 
