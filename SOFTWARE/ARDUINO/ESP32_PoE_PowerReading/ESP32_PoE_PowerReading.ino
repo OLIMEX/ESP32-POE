@@ -1,11 +1,11 @@
-// Demo iDemonstration for power sense and battery sense
+// Demo for power sense and battery sense
 // Compatible with Olimex ESP32-POE, ESP32-POE-ISO, ESP32-POE2
-// Can be configured for other boards changing the #defines
+// Can be configured for other boards changing the #define
 // Automatically selects ADC attenuation based on resistor divider
 
 #include "esp32-hal-adc.h" // ensures adc_attenuation_t is visible
 
-// These are GPIO pins for ESP32-POE, ESP32-POE-ISO, ESP32-POE2 edit for other boards
+// These are GPIO pins for ESP32-POE, ESP32-POE-ISO, ESP32-POE2, edit for other boards
 #define POWER_SENSE 39
 #define BATTERY     35
 
