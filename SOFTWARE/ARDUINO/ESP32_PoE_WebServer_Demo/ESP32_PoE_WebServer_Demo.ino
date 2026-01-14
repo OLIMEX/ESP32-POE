@@ -37,9 +37,9 @@ enum UART_Modules_Type
 };
 
 
-//################ VARIABLES ################
-const char* ssid      = "OlimexTenda";     // WiFi SSID
-const char* password  = "0pen5ourceHardware"; // WiFi Password
+//################ VARIABLES REMEMBER TO CHANGE! ################
+const char* ssid      = "SSID";     // WiFi SSID
+const char* password  = "PASSWORD"; // WiFi Password
 
 String siteheading    = "ESP32-PoE";               // Site's Main Title
 String sitetitle      = "ESP32-PoE Webserver";       // Appears on the tabe of a Web Browser
