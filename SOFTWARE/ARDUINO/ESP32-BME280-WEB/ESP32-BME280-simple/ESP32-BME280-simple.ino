@@ -28,11 +28,12 @@
   - Olimex ESP32-POE2
   - Olimex ESP32-EVB
   - Olimex ESP32-C3-DevKit-Lipo
+  - Olimex ESP32-C6-DevKit-Lipo
 
   The sketch automatically selects correct I2C pins depending on
   the board you choose in Arduino IDE.
 
-  ⚠ If you select the wrong board → wrong pins → sensor will not work.
+  If you select the wrong board → wrong pins → sensor will not work.
 
   =====================================================================
   SENSOR BOARD
@@ -53,7 +54,7 @@
         ESP32-EVB                  → "Olimex ESP32-EVB"
         ESP32-C3-DevKit-Lipo       → "Olimex ESP32-C3-DevKit-Lipo"
 
-  4. For ESP32-C3-DevKit-Lipo:
+  4. For ESP32-C3-DevKit-Lipo and ESP32-C6-DevKit-Lipo (JTAG):
      Enable "USB CDC on boot" in Tools menu, otherwise Serial Monitor
      will not work (this board uses native USB).
 
@@ -75,7 +76,7 @@
 
   Pins are chosen automatically in software.
 
-  ➜ ESP32-POE / POE2 / POE-ISO / EVB
+  ➜ ESP32-POE / POE2 / POE-ISO / EVB / ESP32-C6
       Plug MOD-BME280 directly into UEXT connector.
 
   ➜ ESP32-C3-DevKit-Lipo (NO UEXT connector!)
@@ -100,7 +101,7 @@
   =====================================================================
   HOW TO USE
 
-  1. Enter your WiFi name and password in the sketch.
+  1. Enter your WIFI name and password in the sketch.
   2. Upload code to the board.
   3. Open Tools → Serial Monitor (115200 baud).
   4. After connection, an IP address will be shown.
@@ -140,15 +141,21 @@ const int  daylightOffset_sec = 3600;
 /* =========================================================
    BOARD AUTO-DETECTION (I2C PINS)
    ========================================================= */
-#if defined(ARDUINO_ESP32_POE) || defined(ARDUINO_ESP32_POE_ISO) || defined(ARDUINO_ESP32_POE2)
+#if defined(ARDUINO_ESP32_POE) || defined(ARDUINO_ESP32_POE_ISO)
   #define SDA_PIN 13
   #define SCL_PIN 16
+#elif defined(ARDUINO_ESP32_POE2)
+  #define SDA_PIN 13
+  #define SCL_PIN 33
 #elif defined(ARDUINO_ESP32_EVB)
   #define SDA_PIN 13
   #define SCL_PIN 16
 #elif defined(ARDUINO_ESP32C3_DEVKIT_LIPO)
   #define SDA_PIN 8
   #define SCL_PIN 9
+#elif defined(ARDUINO_ESP32C6_DEV)
+  #define SDA_PIN 6
+  #define SCL_PIN 7
 #else
   #define SDA_PIN 21
   #define SCL_PIN 22

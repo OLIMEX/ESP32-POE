@@ -46,6 +46,7 @@
       • Olimex ESP32-POE2
       • Olimex ESP32-EVB
       • Olimex ESP32-C3-DevKit-Lipo
+	  • Olimex ESP32-C6-DevKit-Lipo
 
   The sketch automatically selects the correct I2C pins depending on
   the board you choose in Arduino IDE.
@@ -81,7 +82,7 @@
         • Adafruit Unified Sensor
 
   =====================================================================
-  SPECIAL NOTE FOR ESP32-C3-DevKit-Lipo
+  SPECIAL NOTE FOR ESP32-C3-DevKit-Lipo and ESP32-C6-DevKit-Lipo (JTAG)
 
   In Arduino IDE:
       Tools → "USB CDC On Boot" → ENABLE
@@ -91,7 +92,7 @@
   =====================================================================
   HARDWARE CONNECTION (I2C SENSOR)
 
-  - ESP32-POE / POE2 / POE-ISO / EVB
+  - ESP32-POE / POE2 / POE-ISO / EVB / ESP32-C6
       Just plug MOD-BME280 into the UEXT connector.
 
   - ESP32-C3-DevKit-Lipo (NO UEXT connector!)
@@ -119,8 +120,8 @@
   HOW TO USE (BEGINNER GUIDE)
 
   STEP 1 — Enter your WiFi credentials in this code:
-      #define WIFI_SSID     "YourWiFiName"
-      #define WIFI_PASSWORD "YourWiFiPassword"
+      #define WIFI_SSID     "WIFI-NAME"
+      #define WIFI_PASSWORD "WIFI-PASSWORD"
 
   STEP 2 — Upload the sketch to your ESP32
 
@@ -188,6 +189,11 @@
   #define SCL_PIN 16
   #define BOARD_NAME "ESP32-POE family"
 
+#elif defined(ARDUINO_ESP32_POE2)
+  #define SDA_PIN 13
+  #define SCL_PIN 33
+  #define BOARD_NAME "ESP32-POE2"
+
 #elif defined(ARDUINO_ESP32_EVB)
 // Olimex ESP32-EVB
 
@@ -201,6 +207,13 @@
   #define SDA_PIN 8
   #define SCL_PIN 9
   #define BOARD_NAME "ESP32-C3-DevKit-Lipo"
+  
+#elif defined(ARDUINO_ESP32C6_DEV)
+// Olimex ESP32-C6-DevKit-Lipo
+
+#define SDA_PIN 6
+#define SCL_PIN 7
+#define BOARD_NAME "ESP32C6 Dev Module"
 
 #else
   #warning "Board not recognized — using default I2C pins!"
