@@ -92,10 +92,10 @@
   =====================================================================
   HARDWARE CONNECTION (I2C SENSOR)
 
-  - ESP32-POE / POE2 / POE-ISO / EVB / ESP32-C6
+  - ESP32-POE / POE2 / POE-ISO / EVB / ESP32-C6 / ESP32-C3 (UEXT)
       Just plug MOD-BME280 into the UEXT connector.
 
-  - ESP32-C3-DevKit-Lipo (NO UEXT connector!)
+  - ESP32-C3-DevKit-Lipo (NO UEXT connector in older revisions)
       Use wires:
 
          BME280  →  ESP32-C3
