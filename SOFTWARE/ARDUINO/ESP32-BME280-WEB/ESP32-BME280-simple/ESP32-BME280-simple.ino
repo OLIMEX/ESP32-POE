@@ -76,10 +76,10 @@
 
   Pins are chosen automatically in software.
 
-  ➜ ESP32-POE / POE2 / POE-ISO / EVB / ESP32-C6
+  ➜ ESP32-POE / POE2 / POE-ISO / EVB / ESP32-C6 / ESP32-C3 (UEXT)
       Plug MOD-BME280 directly into UEXT connector.
 
-  ➜ ESP32-C3-DevKit-Lipo (NO UEXT connector!)
+  ➜ ESP32-C3-DevKit-Lipo (NO UEXT connector in older revisions!)
       Use wires:
 
          BME280  →  ESP32-C3-DevKit-Lipo
