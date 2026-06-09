@@ -1,0 +1,118 @@
+esphome:
+  name: esp32-poe
+  comment: Olimex ESP32-POE / ESP32-POE-ISO WROOM variant with UEXT support
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+logger:
+
+# ================= NETWORKING =================
+
+# ---- WiFi (Primary) ----
+# Remember to add credentials in secrets.yaml:
+# wifi_ssid: "your_wifi_name"
+# wifi_password: "your_wifi_password"
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  ap:
+    ssid: "ESP32-POE Fallback"
+    password: "fallback123"
+
+captive_portal:
+
+# ---- Ethernet (Alternative to WiFi) ----
+# ESPHome cannot use WiFi and Ethernet simultaneously.
+# To use Ethernet:
+#   1. Comment the whole wifi: section above
+#   2. Comment captive_portal:
+#   3. Uncomment the ethernet: section below
+#
+# WROOM variants use GPIO17 as Ethernet clock output.
+#
+#ethernet:
+#  type: LAN8720
+#  mdc_pin: GPIO23
+#  mdio_pin: GPIO18
+#  clk:
+#    pin: GPIO17
+#    mode: CLK_OUT
+#  phy_addr: 0
+#  power_pin:
+#    number: GPIO12
+#    ignore_strapping_warning: true
+#
+# Older ESPHome syntax equivalent:
+#   clk_mode: GPIO17_OUT
+
+# ================= ONBOARD IO =================
+
+# ---- User Button (BUT1) ----
+binary_sensor:
+  - platform: gpio
+    name: "BUT1 Button"
+    pin:
+      number: GPIO34
+      mode:
+        input: true
+        pullup: true
+      inverted: true
+
+# ---- External Power Sense ----
+sensor:
+  - platform: adc
+    pin: GPIO39
+    name: "External Power Sense"
+    attenuation: 12db
+    update_interval: 10s
+
+# ---- Optional Battery Sense ----
+# Requires closing the battery sense solder jumper on boards that support it.
+# Uncomment if needed.
+#
+#  - platform: adc
+#    pin: GPIO35
+#    name: "Battery Sense"
+#    attenuation: 12db
+#    update_interval: 10s
+
+# ================= UEXT CONNECTOR =================
+
+# ---- UART on UEXT ----
+uart:
+  - id: uext_uart
+    tx_pin: GPIO4
+    rx_pin: GPIO36
+    baud_rate: 115200
+
+# ---- I2C Bus on UEXT ----
+# WROOM variants use GPIO16 for UEXT SCL.
+i2c:
+  - id: uext_i2c
+    scl: GPIO16
+    sda: GPIO13
+    scan: true
+
+# ---- SPI Bus on UEXT / SD-shared pins ----
+# NOTE: These pins are shared with the SD card interface.
+# Do not use UEXT SPI and SD card at the same time.
+spi:
+  - id: uext_spi
+    clk_pin: GPIO14
+    mosi_pin: GPIO15
+    miso_pin: GPIO2
+
+# UEXT SPI chip-select is normally GPIO5.
+# Add it in the specific SPI device component, for example:
+#
+# cs_pin: GPIO5
+
+# ================= CORE SERVICES =================
+
+ota:
+  - platform: esphome
+
+api:
