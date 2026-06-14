@@ -406,6 +406,7 @@ char *rom_getinfo(rominfo_t *rominfo)
       strncpy(romname, strrchr(rominfo->filename, PATH_SEP) + 1, PATH_MAX);
    else
       strncpy(romname, rominfo->filename, PATH_MAX);
+   romname[PATH_MAX] = '\0';
 
    /* If our filename is too long, truncate our displayed filename */
    if (strlen(romname) > ROM_DISP_MAXLEN)
@@ -415,7 +416,8 @@ char *rom_getinfo(rominfo_t *rominfo)
    }
    else
    {
-      strcpy(info, romname);
+      strncpy(info, romname, PATH_MAX);
+      info[PATH_MAX] = '\0';
    }
 
    sprintf(temp, " [%d] %dk/%dk %c", rominfo->mapper_number,
