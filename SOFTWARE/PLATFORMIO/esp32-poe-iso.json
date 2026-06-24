@@ -1,0 +1,53 @@
+{
+  "build": {
+    "arduino": {
+      "ldscript": "esp32_out.ld"
+    },
+    "core": "esp32",
+    "mcu": "esp32",
+    "variant": "esp32",
+    "cpu": "esp32",
+    "f_cpu": "240000000L",
+    "f_flash": "80000000L",
+    "flash_mode": "dio",
+    "extra_flags": [
+      "-DARDUINO_ESP32_POE_ISO",
+      "-DOLIMEX_ESP32_POE_ISO",
+      "-DOLIMEX_ESP32_POE_ISO_N4",
+      "-DETH_PHY_TYPE=ETH_PHY_LAN8720",
+      "-DETH_PHY_ADDR=0",
+      "-DETH_PHY_MDC=23",
+      "-DETH_PHY_MDIO=18",
+      "-DETH_PHY_POWER=12",
+      "-DETH_CLK_MODE=ETH_CLOCK_GPIO17_OUT"
+    ]
+  },
+  "connectivity": [
+    "wifi",
+    "bluetooth",
+    "ethernet"
+  ],
+  "debug": {
+    "onboard_tools": [],
+    "openocd_config": []
+  },
+  "frameworks": [
+    "arduino",
+    "espidf"
+  ],
+  "name": "Olimex ESP32-PoE-ISO (WROOM-32E N4)",
+  "platform": "espressif32",
+  "vendor": "Olimex",
+  "url": "https://www.olimex.com/Products/IoT/ESP32/ESP32-POE-ISO/open-source-hardware",
+  "upload": {
+    "flash_size": "4MB",
+    "maximum_ram_size": 327680,
+    "maximum_size": 4194304,
+    "require_upload_port": true,
+    "speed": 921600,
+    "protocols": [
+      "esptool",
+      "espota"
+    ]
+  }
+}
