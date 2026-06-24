@@ -1,12 +1,16 @@
 esphome:
-  name: esp32-poe
-  comment: Olimex ESP32-POE WROOM variant with UEXT support
+  name: esp32-poe-iso-wrover
+  comment: Olimex ESP32-POE-ISO WROVER N4R8 variant with PSRAM and UEXT support
 
 esp32:
   board: esp32dev
   flash_size: 4MB
   framework:
     type: arduino
+
+psram:
+  mode: quad
+  speed: 80MHz
 
 logger:
 
@@ -20,7 +24,7 @@ wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
   ap:
-    ssid: "ESP32-POE Fallback"
+    ssid: "ESP32-POE-ISO-WROVER Fallback"
     password: "fallback123"
 
 captive_portal:
@@ -32,12 +36,14 @@ captive_portal:
 #   2. Comment captive_portal:
 #   3. Uncomment the ethernet: section below
 #
+# WROVER variants use GPIO0 as Ethernet clock output.
+#
 #ethernet:
 #  type: LAN8720
 #  mdc_pin: GPIO23
 #  mdio_pin: GPIO18
 #  clk:
-#    pin: GPIO17
+#    pin: GPIO0
 #    mode: CLK_OUT
 #  phy_addr: 0
 #  power_pin:
@@ -83,9 +89,10 @@ uart:
     baud_rate: 115200
 
 # ---- I2C Bus on UEXT ----
+# WROVER variants use GPIO33 instead of GPIO16 for UEXT SCL.
 i2c:
   - id: uext_i2c
-    scl: GPIO16
+    scl: GPIO33
     sda: GPIO13
     scan: true
 

@@ -1,10 +1,10 @@
 esphome:
-  name: esp32-poe
-  comment: Olimex ESP32-POE WROOM variant with UEXT support
+  name: esp32-poe-16mb
+  comment: Olimex ESP32-POE WROOM N16 variant with UEXT support
 
 esp32:
   board: esp32dev
-  flash_size: 4MB
+  flash_size: 16MB
   framework:
     type: arduino
 
@@ -20,7 +20,7 @@ wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
   ap:
-    ssid: "ESP32-POE Fallback"
+    ssid: "ESP32-POE-16MB Fallback"
     password: "fallback123"
 
 captive_portal:

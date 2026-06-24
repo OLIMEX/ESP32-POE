@@ -1,13 +1,13 @@
 esphome:
   name: esp32-poe-wrover
-  comment: Olimex ESP32-POE / ESP32-POE-ISO WROVER variant with PSRAM and UEXT support
+  comment: Olimex ESP32-POE WROVER N4R8 variant with PSRAM and UEXT support
 
 esp32:
   board: esp32dev
+  flash_size: 4MB
   framework:
     type: arduino
 
-# WROVER variants have PSRAM.
 psram:
   mode: quad
   speed: 80MHz
@@ -17,7 +17,7 @@ logger:
 # ================= NETWORKING =================
 
 # ---- WiFi (Primary) ----
-# Remember to add credentials in secrets.yaml:
+# Add these entries to secrets.yaml:
 # wifi_ssid: "your_wifi_name"
 # wifi_password: "your_wifi_password"
 wifi:
@@ -30,14 +30,13 @@ wifi:
 captive_portal:
 
 # ---- Ethernet (Alternative to WiFi) ----
-# ESPHome cannot use WiFi and Ethernet simultaneously.
+# ESPHome cannot use WiFi and Ethernet at the same time.
 # To use Ethernet:
 #   1. Comment the whole wifi: section above
 #   2. Comment captive_portal:
 #   3. Uncomment the ethernet: section below
 #
 # WROVER variants use GPIO0 as Ethernet clock output.
-# GPIO16 and GPIO17 are used internally by PSRAM and are not available.
 #
 #ethernet:
 #  type: LAN8720
@@ -50,9 +49,6 @@ captive_portal:
 #  power_pin:
 #    number: GPIO12
 #    ignore_strapping_warning: true
-#
-# Older ESPHome syntax equivalent:
-#   clk_mode: GPIO0_OUT
 
 # ================= ONBOARD IO =================
 
@@ -64,7 +60,6 @@ binary_sensor:
       number: GPIO34
       mode:
         input: true
-        pullup: true
       inverted: true
 
 # ---- External Power Sense ----
@@ -77,7 +72,6 @@ sensor:
 
 # ---- Optional Battery Sense ----
 # Requires closing the battery sense solder jumper on boards that support it.
-# Uncomment if needed.
 #
 #  - platform: adc
 #    pin: GPIO35
@@ -102,19 +96,28 @@ i2c:
     sda: GPIO13
     scan: true
 
-# ---- SPI Bus on UEXT / SD-shared pins ----
-# NOTE: These pins are shared with the SD card interface.
-# Do not use UEXT SPI and SD card at the same time.
+# ---- SPI Bus on UEXT ----
+# UEXT pin 8 MOSI is GPIO2, pin 7 MISO is GPIO15.
+# These pins are shared with the microSD interface.
 spi:
   - id: uext_spi
     clk_pin: GPIO14
-    mosi_pin: GPIO15
-    miso_pin: GPIO2
+    mosi_pin: GPIO2
+    miso_pin: GPIO15
 
-# UEXT SPI chip-select is normally GPIO5.
-# Add it in the specific SPI device component, for example:
+# UEXT SPI chip-select is GPIO5. Add it in the specific SPI device:
 #
 # cs_pin: GPIO5
+
+# ================= OPTIONAL SD CARD (DISABLED) =================
+# To use an SD card, remove the UEXT SPI section above first. SD-card SPI
+# uses the same physical pins, but CMD/DATA0 map as MOSI/MISO below.
+#
+# spi:
+#   id: sd_spi
+#   clk_pin: GPIO14
+#   mosi_pin: GPIO15
+#   miso_pin: GPIO2
 
 # ================= CORE SERVICES =================
 
