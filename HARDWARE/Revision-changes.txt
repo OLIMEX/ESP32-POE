@@ -2,6 +2,11 @@ ESP32-PoE
 
 This hardware design is made with KiCAD. If you have problems opening the design, try getting newer KiCAD version (probably even latest nightly build).
 
+Hardware revision M2
+---
+
+Patched CH340 circuitry to reduce chances of hardware damage. Patch is over D7.
+
 Hardware revision M1
 ---
 
