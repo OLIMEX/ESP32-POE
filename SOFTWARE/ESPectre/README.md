@@ -4,10 +4,10 @@ This guide shows how to flash an Olimex [ESP32-POE](https://www.olimex.com/Produ
 
 ESPectre is a motion detection system based on Wi-Fi Channel State Information (CSI). It detects movement by analyzing changes in the Wi-Fi signal between an ESP32 board and a Wi-Fi router or access point.
 
-The steps below were tested with:
+This guide uses:
 
 - Olimex ESP32-POE / ESP32-POE-ISO
-- ESPectre `2.8.0`
+- ESPectre `3.2.1` (ESPHome firmware)
 - Home Assistant running on a Raspberry Pi
 - ESPHome integration in Home Assistant
 
@@ -27,23 +27,23 @@ http://homeassistant.local:8123/
 
 The Home Assistant server and the ESP32 board must be on the same local network.
 
-## 2. Download the ESPectre firmware
+## 2. Install the ESPectre firmware
 
-Download the pre-built ESPectre binary for the ESP32 chip from the latest ESPectre release:
+If you have an **ESP32-POE**, unplug the Ethernet cable before connecting the board to your computer with a USB data cable. On the **ESP32-POE-ISO**, you can leave the Ethernet cable connected while using USB.
+
+Open the [ESPectre web installer](https://espectre.dev/tools/flash/) in desktop Chrome or Edge. Select **Connect USB device**, choose the **ESPHome** firmware, and follow the prompts to install it and set up Wi-Fi. Once the board joins your network, go to [step 5 to add it to Home Assistant](#5-add-espectre-to-home-assistant).
+
+If you prefer to flash the board manually, download the ESPHome factory image for the original ESP32 from the latest release and follow steps 3 and 4:
 
 <https://github.com/francescopace/espectre/releases/latest>
 
-At the time of writing, this guide used:
+For ESPectre 3.2.1, the file is:
 
-<https://github.com/francescopace/espectre/releases/download/2.8.0/espectre-2.8.0-esp32.bin>
-
-If you use a different ESP32 variant, download the correct binary for that chip.
+<https://github.com/francescopace/espectre/releases/download/3.2.1/espectre-esphome-3.2.1-esp32.bin>
 
 ## 3. Flash the Olimex ESP32 board
 
-Connect the Olimex ESP32 board to your computer with a USB data cable.
-
-You can flash the binary using different tools. This guide uses Espressif's online flasher:
+Open Espressif's online flasher:
 
 <https://espressif.github.io/esptool-js/>
 
@@ -65,7 +65,7 @@ This is important. The ESPectre `.bin` file used here is a factory image and mus
 Click **Choose File** and select the ESPectre binary, for example:
 
 ```text
-espectre-2.8.0-esp32.bin
+espectre-esphome-3.2.1-esp32.bin
 ```
 
 Leave the other flash settings at their default values unless you have a specific reason to change them.
@@ -129,10 +129,10 @@ If the device is not discovered automatically, add it manually:
 1. Go to **Settings -> Devices & services**.
 2. Click **Add integration**.
 3. Search for **ESPHome**.
-4. Use `espectre.local` as the host.
+4. Use the board's hostname (for example, `espectre-a1b2c3.local`).
 5. Use port `6053`.
 
-If `espectre.local` does not work, find the board's IP address in your router DHCP/client list and use that IP address instead.
+If the hostname does not work, find the board's IP address in your router DHCP/client list and use that IP address instead.
 
 ## 6. Test motion detection
 
@@ -142,7 +142,7 @@ You should see entities such as:
 
 - Motion Detected
 - Movement Score
-- Calibrate
+- Recalibrate
 - Threshold
 
 Place the board with the antenna facing upward, preferably on the opposite side of the monitored area from the Wi-Fi router or access point.
@@ -188,6 +188,7 @@ This makes ESPectre useful not only as a standalone motion detector, but also as
 
 ## Further reading
 
+- To use the built-in [ESPectre component](https://esphome.io/components/espectre/) in your own ESPHome configuration, see the [ESPHome 2026.11 YAML example](olimex-espectre.yaml).
 - <https://github.com/francescopace/espectre>
 - <https://github.com/esphome>
 - <https://github.com/home-assistant>
