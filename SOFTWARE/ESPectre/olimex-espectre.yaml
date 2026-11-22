@@ -1,0 +1,34 @@
+# Set wifi_ssid, wifi_password, and olimex_espectre_api_key in secrets.yaml.
+# Generate the API encryption key with: openssl rand -base64 32
+esphome:
+  name: olimex-espectre
+  friendly_name: Olimex ESPectre
+  min_version: 2026.11.0
+  name_add_mac_suffix: true
+
+esp32:
+  variant: esp32
+  framework:
+    type: esp-idf
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+logger:
+
+api:
+  encryption:
+    key: !secret olimex_espectre_api_key
+
+espectre:
+
+binary_sensor:
+  - platform: espectre
+    motion:
+      name: Motion Detected
+
+sensor:
+  - platform: espectre
+    movement:
+      name: Movement Score
